@@ -2,15 +2,16 @@
 
 #include"swap.cpp"
 
-void merge(int arr[], int l, int m, int r)
+template <class X>
+inline void merge(X arr[], int l, int m, int r)
 {
 	int i, j, k;
 	int n1 = m - l + 1;
 	int n2 = r - m;
 
 	/* create temp arrays */
-	int* L = new int[n1];
-	int* R = new int[n2];
+	X* L = new X[n1];
+	X* R = new X[n2];
 
 	/* Copy data to temp arrays L[] and R[] */
 	for (i = 0; i < n1; i++)
@@ -55,12 +56,13 @@ void merge(int arr[], int l, int m, int r)
 		k++;
 	}
 
-	delete L, R;
+	delete[] L, R;
 }
 
 /* l is for left index and r is right index of the
    sub-array of arr to be sorted */
-void mergeSort(int arr[], int l, int r)
+template <class X>
+inline void mergeSort(X arr[], int l, int r)
 {
 	if (l < r)
 	{

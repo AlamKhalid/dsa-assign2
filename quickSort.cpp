@@ -2,7 +2,8 @@
 
 #include"swap.cpp"
 
-int partition(int arr[], int i, int j) {
+template <class X>
+inline int partition(X arr[], int i, int j) {
 
 	int key = i;
 	while (i < j) {
@@ -13,11 +14,12 @@ int partition(int arr[], int i, int j) {
 		if (i < j)
 			swap(&arr[i], &arr[j]);
 	}
-	swap(&arr[j], &arr[key]);
+	swap<X>(&arr[j], &arr[key]);
 	return j;
 }
 
-void quickSort(int arr[], int low, int high) {
+template <class X>
+inline void quickSort(X arr[], int low, int high) {
 
 	if (low < high) {
 

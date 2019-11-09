@@ -2,7 +2,8 @@
 
 #include"swap.cpp"
 
-void selectionSort(int arr[], int n) {
+template <class X>
+void selectionSort(X arr[], int n) {
 
 	for (int i = 0; i < n - 1; i++) {
 		int least = i;
@@ -10,6 +11,6 @@ void selectionSort(int arr[], int n) {
 			if (arr[j] < arr[least])
 				least = j;
 		}
-		swap(&arr[i], &arr[least]);
+		swap<X>(&arr[i], &arr[least]);
 	}
 }

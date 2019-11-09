@@ -1,8 +1,9 @@
 #pragma once
 
-inline void swap(int *p, int *q) {
+template <class X>
+inline void swap(X *p, X *q) {
 
-	int temp = *p;
+	X temp = *p;
 	*p = *q;
 	*q = temp;
 }
