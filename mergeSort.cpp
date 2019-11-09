@@ -3,7 +3,7 @@
 #include"swap.cpp"
 
 template <class X>
-inline void merge(X arr[], int l, int m, int r)
+inline void merge(X arr[], int l, int m, int r, int order)
 {
 	int i, j, k;
 	int n1 = m - l + 1;
@@ -25,15 +25,29 @@ inline void merge(X arr[], int l, int m, int r)
 	k = l; // Initial index of merged subarray 
 	while (i < n1 && j < n2)
 	{
-		if (L[i] <= R[j])
-		{
-			arr[k] = L[i];
-			i++;
+		if (order == 1) {
+			if (L[i] <= R[j])
+			{
+				arr[k] = L[i];
+				i++;
+			}
+			else
+			{
+				arr[k] = R[j];
+				j++;
+			}
 		}
-		else
-		{
-			arr[k] = R[j];
-			j++;
+		else {
+			if (L[i] >= R[j])
+			{
+				arr[k] = L[i];
+				i++;
+			}
+			else
+			{
+				arr[k] = R[j];
+				j++;
+			}
 		}
 		k++;
 	}
@@ -62,7 +76,7 @@ inline void merge(X arr[], int l, int m, int r)
 /* l is for left index and r is right index of the
    sub-array of arr to be sorted */
 template <class X>
-inline void mergeSort(X arr[], int l, int r)
+inline void mergeSort(X arr[], int l, int r, int order)
 {
 	if (l < r)
 	{
@@ -71,9 +85,9 @@ inline void mergeSort(X arr[], int l, int r)
 		int m = l + (r - l) / 2;
 
 		// Sort first and second halves 
-		mergeSort(arr, l, m);
-		mergeSort(arr, m + 1, r);
+		mergeSort(arr, l, m, order);
+		mergeSort(arr, m + 1, r, order);
 
-		merge(arr, l, m, r);
+		merge(arr, l, m, r, order);
 	}
 }

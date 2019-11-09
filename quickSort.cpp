@@ -3,14 +3,22 @@
 #include"swap.cpp"
 
 template <class X>
-inline int partition(X arr[], int i, int j) {
+inline int partition(X arr[], int i, int j, int order) {
 
 	int key = i;
 	while (i < j) {
-		while (arr[i] <= arr[key])
-			i++;
-		while (arr[j] > arr[key])
-			j--;
+		if (order == 1) {
+			while (arr[i] <= arr[key])
+				i++;
+			while (arr[j] > arr[key])
+				j--;
+		}
+		else {
+			while (arr[i] >= arr[key])
+				i++;
+			while (arr[j] < arr[key])
+				j--;
+		}
 		if (i < j)
 			swap(&arr[i], &arr[j]);
 	}
@@ -19,12 +27,12 @@ inline int partition(X arr[], int i, int j) {
 }
 
 template <class X>
-inline void quickSort(X arr[], int low, int high) {
+inline void quickSort(X arr[], int low, int high, int order) {
 
 	if (low < high) {
 
-		int pivot = partition(arr, low, high);
-		quickSort(arr, low, pivot - 1);
-		quickSort(arr, pivot + 1, high);
+		int pivot = partition(arr, low, high, order);
+		quickSort(arr, low, pivot - 1, order);
+		quickSort(arr, pivot + 1, high, order);
 	}
 }
