@@ -81,7 +81,6 @@ void countSort(string a[], int size, size_t k)
 	delete[] c;
 }
 
-
 void radixSort(string b[], int r)
 {
 	size_t max = getMax(b, r);
